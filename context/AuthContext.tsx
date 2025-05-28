@@ -6,21 +6,21 @@ interface User {
 
 interface AuthContextType {
   user: User | null;
-  login: (email: string, password: string) => void;
+  login: (email: string, password: string) => Promise<void>;
   logout: () => void;
 }
 
 export const AuthContext = createContext<AuthContextType>({
   user: null,
-  login: () => {},
+  login: async () => {},
   logout: () => {},
 });
 
 const AuthProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
 
-  const login = (email: string, password: string) => {
-    // ZDE budeš řešit ověření uživatele (zatím jen "fake" login)
+  const login = async (email: string, password: string) => {
+    // ZDE můžeš řešit ověření uživatele (zatím fake login)
     setUser({ email });
   };
 
