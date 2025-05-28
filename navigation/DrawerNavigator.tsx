@@ -1,5 +1,5 @@
 import React from 'react';
-import { createDrawerNavigator, DrawerContentScrollView, DrawerItemList, DrawerItem } from '@react-navigation/drawer';
+import { createDrawerNavigator, DrawerContentScrollView, DrawerItemList } from '@react-navigation/drawer';
 import TabNavigator from './TabNavigator';
 import PaymentsScreen from '../screens/PaymentsScreen';
 import LoyaltyScreen from '../screens/LoyaltyScreen';
@@ -9,7 +9,6 @@ import AboutScreen from '../screens/AboutScreen';
 import LegalScreen from '../screens/LegalScreen';
 import { Ionicons } from '@expo/vector-icons';
 
-// Drawer navigator
 const Drawer = createDrawerNavigator();
 
 function CustomDrawerContent(props: any) {

@@ -1,16 +1,16 @@
 import React, { useContext, useState } from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import LoginScreen from '../screens/LoginScreen';
-import RegisterScreen from '../screens/RegisterScreen'; // <-- Přidáno
-import ForgotPasswordScreen from '../screens/ForgotPasswordScreen'; // <-- Přidáno
+import RegisterScreen from '../screens/RegisterScreen';
+import ForgotPasswordScreen from '../screens/ForgotPasswordScreen';
 import CarDetailScreen from '../screens/CarDetailScreen';
 import SplashScreen from "../screens/SplashScreen";
-import TabNavigator from './DrawerNavigator';
+import DrawerNavigator from './DrawerNavigator'; // ZMĚNA: import DrawerNavigator místo TabNavigator
 import { AuthContext } from '../context/AuthContext';
 
 export type RootStackParamList = {
   Login: undefined;
-  Register: undefined; // <-- Přidáno
+  Register: undefined;
   Tabs: undefined;
   CarDetail: { car: string };
 };
@@ -35,7 +35,7 @@ const AppNavigator = () => {
         </>
       ) : (
         <>
-          <Stack.Screen name="Tabs" component={TabNavigator} options={{ headerShown: false }} />
+          <Stack.Screen name="Tabs" component={DrawerNavigator} options={{ headerShown: false }} />
           <Stack.Screen name="CarDetail" component={CarDetailScreen} options={{ title: 'Detail vozidla' }} />
         </>
       )}
