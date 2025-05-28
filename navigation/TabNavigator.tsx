@@ -1,7 +1,7 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import HomeScreen from '../screens/HomeScreen';
-import CarsScreen from '../screens/CarsScreen';
+import MapScreen from '../screens/MapScreen';
+import CarDetailScreen from '../screens/CarDetailScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 import { Ionicons } from '@expo/vector-icons';
 
@@ -17,16 +17,16 @@ export default function TabNavigator() {
         tabBarLabelStyle: { fontWeight: 'bold', fontSize: 14 },
         tabBarIcon: ({ color, size }) => {
           let iconName: string;
-          if (route.name === 'Home') iconName = 'home';
-          else if (route.name === 'Auta') iconName = 'car';
+          if (route.name === 'Map') iconName = 'map';
+          else if (route.name === 'Detail auta') iconName = 'car';
           else if (route.name === 'Profil') iconName = 'person';
           else iconName = 'ellipse';
           return <Ionicons name={iconName as any} size={size} color={color} />;
         },
       })}
     >
-      <Tab.Screen name="Home" component={HomeScreen} options={{ tabBarLabel: 'Domů' }} />
-      <Tab.Screen name="Auta" component={CarsScreen} />
+      <Tab.Screen name="Map" component={MapScreen} options={{ tabBarLabel: 'Mapa' }} />
+      <Tab.Screen name="Detail auta" component={CarDetailScreen} />
       <Tab.Screen name="Profil" component={ProfileScreen} />
     </Tab.Navigator>
   );
