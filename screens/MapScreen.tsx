@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, Dimensions, ActivityIndicator, Alert } from 'react-native';
+// Z SafeAreaView použijeme pouze dolní a boční okraje, aby nevznikala mezera pod headerem
 import { SafeAreaView } from 'react-native-safe-area-context';
 import MapView, { Marker, Polygon } from 'react-native-maps';
 import * as Location from 'expo-location';
@@ -26,14 +27,14 @@ const MapScreen = () => {
 
   if (loading) {
     return (
-      <SafeAreaView style={styles.container}>
+      <SafeAreaView style={styles.container} edges={['left', 'right', 'bottom']}>
         <ActivityIndicator size="large" />
       </SafeAreaView>
     );
   }
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={styles.container} edges={['left', 'right', 'bottom']}>
       <MapView
         style={styles.map}
         initialRegion={{
