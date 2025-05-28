@@ -5,7 +5,7 @@ import RegisterScreen from '../screens/RegisterScreen'; // <-- Přidáno
 import ForgotPasswordScreen from '../screens/ForgotPasswordScreen'; // <-- Přidáno
 import CarDetailScreen from '../screens/CarDetailScreen';
 import SplashScreen from "../screens/SplashScreen";
-import TabNavigator from './TabNavigator';
+import TabNavigator from './DrawerNavigator';
 import { AuthContext } from '../context/AuthContext';
 
 export type RootStackParamList = {

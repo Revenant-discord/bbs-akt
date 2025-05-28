@@ -1,101 +1,33 @@
 import React from 'react';
-import { createDrawerNavigator, DrawerContentScrollView, DrawerItemList, DrawerItem } from '@react-navigation/drawer';
-import TabNavigator from './TabNavigator';
-import PaymentsScreen from '../screens/PaymentsScreen';
-import LoyaltyScreen from '../screens/LoyaltyScreen';
-import FaqScreen from '../screens/FaqScreen';
-import ContactScreen from '../screens/ContactScreen';
-import AboutScreen from '../screens/AboutScreen';
-import LegalScreen from '../screens/LegalScreen';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import HomeScreen from '../screens/HomeScreen';
+import CarsScreen from '../screens/CarsScreen';
+import ProfileScreen from '../screens/ProfileScreen';
 import { Ionicons } from '@expo/vector-icons';
 
-// Drawer navigator
-const Drawer = createDrawerNavigator();
+const Tab = createBottomTabNavigator();
 
-function CustomDrawerContent(props: any) {
+export default function TabNavigator() {
   return (
-    <DrawerContentScrollView {...props}>
-      <DrawerItemList {...props} />
-      {/* Další custom sekce, například odhlášení, apod. */}
-    </DrawerContentScrollView>
-  );
-}
-
-export default function DrawerNavigator() {
-  return (
-    <Drawer.Navigator
-      drawerContent={props => <CustomDrawerContent {...props} />}
-      screenOptions={{
+    <Tab.Navigator
+      screenOptions={({ route }) => ({
         headerShown: false,
-        drawerActiveTintColor: '#F57C00',
-        drawerInactiveTintColor: '#222',
-        drawerLabelStyle: { fontWeight: 'bold', fontSize: 16 },
-      }}
+        tabBarActiveTintColor: '#F57C00',
+        tabBarInactiveTintColor: '#222',
+        tabBarLabelStyle: { fontWeight: 'bold', fontSize: 14 },
+        tabBarIcon: ({ color, size }) => {
+          let iconName: string;
+          if (route.name === 'Home') iconName = 'home';
+          else if (route.name === 'Auta') iconName = 'car';
+          else if (route.name === 'Profil') iconName = 'person';
+          else iconName = 'ellipse';
+          return <Ionicons name={iconName as any} size={size} color={color} />;
+        },
+      })}
     >
-      <Drawer.Screen
-        name="Domů"
-        component={TabNavigator}
-        options={{
-          drawerLabel: 'Domů',
-          drawerIcon: ({ color, size }) => (
-            <Ionicons name="home" size={size} color={color} />
-          ),
-        }}
-      />
-      <Drawer.Screen
-        name="Platby a faktury"
-        component={PaymentsScreen}
-        options={{
-          drawerIcon: ({ color, size }) => (
-            <Ionicons name="card" size={size} color={color} />
-          ),
-        }}
-      />
-      <Drawer.Screen
-        name="Věrnostní program"
-        component={LoyaltyScreen}
-        options={{
-          drawerIcon: ({ color, size }) => (
-            <Ionicons name="ribbon" size={size} color={color} />
-          ),
-        }}
-      />
-      <Drawer.Screen
-        name="FAQ"
-        component={FaqScreen}
-        options={{
-          drawerIcon: ({ color, size }) => (
-            <Ionicons name="help-circle" size={size} color={color} />
-          ),
-        }}
-      />
-      <Drawer.Screen
-        name="Kontakt"
-        component={ContactScreen}
-        options={{
-          drawerIcon: ({ color, size }) => (
-            <Ionicons name="call" size={size} color={color} />
-          ),
-        }}
-      />
-      <Drawer.Screen
-        name="O aplikaci"
-        component={AboutScreen}
-        options={{
-          drawerIcon: ({ color, size }) => (
-            <Ionicons name="information-circle" size={size} color={color} />
-          ),
-        }}
-      />
-      <Drawer.Screen
-        name="Právní informace"
-        component={LegalScreen}
-        options={{
-          drawerIcon: ({ color, size }) => (
-            <Ionicons name="document" size={size} color={color} />
-          ),
-        }}
-      />
-    </Drawer.Navigator>
+      <Tab.Screen name="Home" component={HomeScreen} options={{ tabBarLabel: 'Domů' }} />
+      <Tab.Screen name="Auta" component={CarsScreen} />
+      <Tab.Screen name="Profil" component={ProfileScreen} />
+    </Tab.Navigator>
   );
 }
