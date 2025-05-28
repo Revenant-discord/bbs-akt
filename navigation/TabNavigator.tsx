@@ -12,7 +12,7 @@ export default function TabNavigator() {
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
-        headerShown: false,
+        headerShown: true,
         tabBarActiveTintColor: '#F57C00',
         tabBarInactiveTintColor: '#222',
         tabBarLabelStyle: { fontWeight: 'bold', fontSize: 14 },
