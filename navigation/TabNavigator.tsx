@@ -1,7 +1,8 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import MapScreen from '../screens/MapScreen';
-import CarDetailScreen from '../screens/CarDetailScreen';
+import PriceListScreen from '../screens/PriceListScreen';
+import ReservationScreen from '../screens/ReservationScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 import { Ionicons } from '@expo/vector-icons';
 
@@ -17,16 +18,18 @@ export default function TabNavigator() {
         tabBarLabelStyle: { fontWeight: 'bold', fontSize: 14 },
         tabBarIcon: ({ color, size }) => {
           let iconName: string;
-          if (route.name === 'Map') iconName = 'map';
-          else if (route.name === 'Detail auta') iconName = 'car';
+          if (route.name === 'Mapa') iconName = 'map';
+          else if (route.name === 'Ceník') iconName = 'pricetag';
+          else if (route.name === 'Rezervace') iconName = 'calendar';
           else if (route.name === 'Profil') iconName = 'person';
           else iconName = 'ellipse';
           return <Ionicons name={iconName as any} size={size} color={color} />;
         },
       })}
     >
-      <Tab.Screen name="Map" component={MapScreen} options={{ tabBarLabel: 'Mapa' }} />
-      <Tab.Screen name="Detail auta" component={CarDetailScreen} />
+      <Tab.Screen name="Mapa" component={MapScreen} />
+      <Tab.Screen name="Ceník" component={PriceListScreen} />
+      <Tab.Screen name="Rezervace" component={ReservationScreen} />
       <Tab.Screen name="Profil" component={ProfileScreen} />
     </Tab.Navigator>
   );
