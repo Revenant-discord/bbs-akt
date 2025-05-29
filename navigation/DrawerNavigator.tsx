@@ -25,13 +25,14 @@ function CustomDrawerContent(props: any) {
   );
 }
 
-const BUTTON_SIZE = 54;
-const OUTLINE_SIZE = 64;
+const BUTTON_SIZE = 46;
+const OUTLINE_SIZE = 56;
 
 const styles = StyleSheet.create({
   menuButtonContainer: {
     marginLeft: 16,
     marginRight: 4,
+    marginTop: -20, // Volitelné, pokud chceš ještě posunout tlačítko níž v headeru
   },
   outline: {
     position: 'absolute',
@@ -66,7 +67,7 @@ const styles = StyleSheet.create({
     width: BUTTON_SIZE,
     height: BUTTON_SIZE,
     borderRadius: BUTTON_SIZE / 2,
-    backgroundColor: 'rgba(245,124,0,0.45)', // méně průhledná výplň
+    backgroundColor: 'rgba(245,124,0,0.62)', // více sytá oranžová, méně průhledná
     zIndex: 2,
   },
   menuIcon: {
@@ -98,18 +99,18 @@ function PulsingButton({ children }: { children: React.ReactNode }) {
     ).start();
   }, [pulseAnim]);
 
-  // Pulz efekt: mění scale a opacity pulzní výplně i kolečka
+  // Výraznější oranžová, kolečko se během pulzu více zprůhlední
   const scale = pulseAnim.interpolate({
     inputRange: [0, 1],
-    outputRange: [0.7, 1.07],
+    outputRange: [0.7, 1.09],
   });
   const pulseOpacity = pulseAnim.interpolate({
     inputRange: [0, 1],
-    outputRange: [0.22, 0.48], // méně průhledná při max
+    outputRange: [0.37, 0.68], // více sytá oranžová při max
   });
   const buttonOpacity = pulseAnim.interpolate({
     inputRange: [0, 1],
-    outputRange: [1, 0.78], // kolečko se lehce zprůhlední během pulsu
+    outputRange: [1, 0.61], // kolečko se více zprůhlední během pulsu
   });
 
   return (
@@ -157,6 +158,12 @@ export default function DrawerNavigator() {
       screenOptions={({ navigation }) => ({
         headerShown: true,
         headerTitleAlign: 'center',
+        headerStyle: {
+          backgroundColor: '#fff',
+          height: 100,       // VELKÝ header (běžně 56, navýšeno)
+          paddingTop: 36,    // VELKÝ posun dolů (dle chuti navýšit/snížit)
+          paddingBottom: 12, // Volitelné pro vycentrování textu v headeru
+        },
         headerLeft: () => (
           <View style={styles.menuButtonContainer}>
             <Animated.View style={{ transform: [{ scale: scaleAnim }] }}>
